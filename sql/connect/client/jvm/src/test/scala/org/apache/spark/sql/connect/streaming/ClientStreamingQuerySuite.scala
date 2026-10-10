@@ -505,6 +505,7 @@ class ClientStreamingQuerySuite extends QueryTest with RemoteSparkSession with L
     assert(spark.streams.listListeners().length == 0)
 
     spark.streams.addListener(listener)
+    spark.streams.removeListener(new EventCollectorV2)
 
     val q = spark.readStream
       .format("rate")
